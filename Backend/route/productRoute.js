@@ -6,15 +6,38 @@ const { Mens, Womens, Bluelens, Buy1get1, Kidslense, Kidssunglass, Screenlense }
 
 productRouter.get("/", async (req, res) => {
     let data = await Mens.find({});
-    let data2 = await Womens.find({});
-    let data3 = await Bluelens.find({});
-    let data4 = await Buy1get1.find({});
-    let data5 = await Kidslense.find({});
-    let data6 = await Kidssunglass.find({});
-    let data7 = await Screenlense.find({});
-    res.send([...data, ...data2, ...data3, ...data4, ...data5, ...data6, ...data7]);
+    res.send(data);
 })
 
+productRouter.get("/womens", async (req, res) => {
+    let data = await Womens.find({});
+    res.send(data);
+})
+
+productRouter.get("/bluelens", async (req, res) => {
+    let data = await Bluelens.find({});
+    res.send(data);
+})
+
+productRouter.get("/buy1get1", async (req, res) => {
+    let data = await Buy1get1.find({});
+    res.send(data);
+})
+
+productRouter.get("/kidslense", async (req, res) => {
+    let data = await Kidslense.find({});
+    res.send(data);
+})
+
+productRouter.get("/kidssunglass", async (req, res) => {
+    let data = await Kidssunglass.find({});
+    res.send(data);
+})
+
+productRouter.get("/screenlense", async (req, res) => {
+    let data = await Screenlense.find({});
+    res.send(data);
+})
 
 
 
