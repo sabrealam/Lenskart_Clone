@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use("/api/user", require("./Backend/route/userRoute"));
 app.use("/api/products", require("./Backend/route/productRoute"));
+app.use("/api", require("./Backend/route/oprationRouter"));
 
 app.get("/", (req, res) => {
     res.send(`hello world`);

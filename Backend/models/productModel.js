@@ -23,5 +23,6 @@ let Buy1get1 = mongoose.model('buy1get1', productSchema);
 let Kidslense = mongoose.model('Kidslense', productSchema);
 let Kidssunglass = mongoose.model('Kidssunglass', productSchema);
 let Screenlense = mongoose.model('Screenlense', productSchema);
+let Product = mongoose.model('Product', productSchema);
 
-module.exports = {Mens, Womens, Bluelens, Buy1get1, Kidslense, Kidssunglass, Screenlense}
+module.exports = {Mens, Womens, Bluelens, Buy1get1, Kidslense, Kidssunglass, Screenlense, Product}
