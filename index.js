@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 app.listen(process.env.PORT || 5000, () => {
     try {
-        console.log("server is running");
+        console.log(`server is running ${process.env.PORT}`);
         dbFunction();
     } catch (error) {
         console.log(error);
