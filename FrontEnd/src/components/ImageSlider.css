@@ -1,0 +1,13 @@
+.slider-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent horizontal overflow */
+  }
+  
+  .slider-img {
+    max-width: 100%;
+    height: auto;
+  }
+  

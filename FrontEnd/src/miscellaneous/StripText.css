@@ -1,0 +1,25 @@
+.centered-text-container {
+    display: flex;
+    align-items: center;
+    margin: 0 10px; /* Adjust the margin from the container edges */
+  }
+  
+  .center-line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #000;
+  }
+  
+  .left-line {
+    margin-left: 100px; /* Adjust the left margin */
+  }
+  
+  .right-line {
+    margin-right: 100px; /* Adjust the right margin */
+  }
+  
+  .centered-text {
+    font-weight: bold;
+    margin: 0 10px; /* Adjust the spacing between text and lines */
+  }
+  
