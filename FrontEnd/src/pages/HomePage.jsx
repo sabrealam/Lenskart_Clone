@@ -189,7 +189,6 @@ export default function HomePage() {
       />
       <Strip h={"20px"} />
       <Footer />
-      {JSON.stringify(state.cart)}
     </Box>
   );
 }

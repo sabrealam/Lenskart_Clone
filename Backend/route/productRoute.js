@@ -10,6 +10,14 @@ const {
   Product,
 } = require("../models/productModel");
 
+// <!-------------------- All Products ------------------------->
+
+productRouter.get("/v2/:id", async (req, res) => {
+  let id = req.params.id
+  let data = await Product.findOne({id : id});
+  res.send(data);
+});
+
 // <!-------------------- Mens ------------------------->
 
 productRouter.get("/v2/mens", async (req, res) => {

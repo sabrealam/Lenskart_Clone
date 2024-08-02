@@ -4,7 +4,7 @@ import { ArrowDownUp } from "lucide-react";
 export default function SortingBar() {
   return (
     <HStack
-      w={"80vw"}
+      w={"100%"}
       h={"60px"}
       justifyContent={"space-between"}
       bg="#ededed"

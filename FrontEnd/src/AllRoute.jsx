@@ -8,6 +8,7 @@ import Buy1get1Page from './pages/Buy1Get1Page'
 import KidslensePage from './pages/KidsLensPage'
 import KidssunglassPage from './pages/KidssunglassPage'
 import ScreenlensePage from './pages/ScreenLensPage'
+import SinglePage from './pages/SinglePage'
 
 
 
@@ -22,6 +23,7 @@ export default function AllRoute() {
     <Route  path='/kidslense' element={<KidslensePage/>} />
     <Route  path='/kidssunglass' element={<KidssunglassPage/>} />
     <Route  path='/screenlense' element={<ScreenlensePage/>} />
+    <Route  path='/product/:id' element={<SinglePage/>} />
     
    </Routes>
   )
