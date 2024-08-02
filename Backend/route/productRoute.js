@@ -12,7 +12,7 @@ const {
 
 // <!-------------------- All Products ------------------------->
 
-productRouter.get("/v2/:id", async (req, res) => {
+productRouter.get("/v2/find/:id", async (req, res) => {
   let id = req.params.id
   let data = await Product.findOne({id : id});
   res.send(data);
