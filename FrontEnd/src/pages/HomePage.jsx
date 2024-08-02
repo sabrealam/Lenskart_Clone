@@ -8,8 +8,14 @@ import ImageSlider from "../components/ImageSlider";
 import StripText from "../miscellaneous/StripText";
 import Footer from "../components/Footer";
 import SubFooter from "../components/SubFooter";
-
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 export default function HomePage() {
+ 
+  // const state = useSelector((state) => state);
+  // const dispatch = useDispatch();
+
+
   let catdata = [
     {
       to: "/mens",
@@ -61,143 +67,129 @@ export default function HomePage() {
         mt={"30px"}
         bg={"gray.100"}
       >
-        {catdata.map((e) => (
-          <CategoryCard to={e.to} name={e.name} src={e.src} />
+        {catdata.map((e, i) => (
+          <CategoryCard to={e.to} key={i} name={e.name} src={e.src} />
         ))}
       </HStack>
-
-      <Image
+        <Box w="100%"
         h="360px"
+        bg={"cyan.400"}
+        >
+
+        
+      <Image
+        w="100%"
+        h="100%"
         src="https://static1.lenskart.com/media/desktop/img/harmony/28-jun-24/Web%20Banner%201920x520.jpg"
       />
-
+</Box>
       <ImageSlider data={imageLink} />
-      <Strip />
-      <Strip />
+      <Strip h={"40px"} />
 
       <Image
         h="250px"
         src="https://static1.lenskart.com/media/desktop/img/Apr22/Bannerforexport.jpg"
       />
-      <Strip />
-      <Strip />
+      <Strip h={"40px"} />
 
       <StripText text={"Free Progressive Lenses"} />
-      <Strip />
-      <Strip />
+      <Strip h={"40px"} />
+
       <Image
         h="390px"
         src="https://static1.lenskart.com/media/desktop/img/2024/may/prog/New%20Web%20Banner.jpg"
       />
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"Book Eye Test at Home"} />
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
 
       <Image
         h="390px"
         src="https://static5.lenskart.com/media/uploads/hechome11.png"
       />
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"Free Online Eye Test"} />
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <Image
         h="390px"
         src="https://static1.lenskart.com/media/desktop/img/2024/jun/eyetest/Turban-DesktopBanner.jpg"
       />
 
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"Premium Eyewear"} />
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <Image
         h="390px"
         src="https://static1.lenskart.com/media/desktop/img/oct23/home/13-10-23/As%20seen%20on%20Desk.jpg"
       />
-       <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"As Seen on Mouni Roy"} />
 
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <Image
         h="390px"
         src="https://static1.lenskart.com/media/desktop/img/23may/cannes/web.gif"
       />
-       <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"As Seen on Shark Tank"} />
 
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <Image
         h="390px"
         src="https://static1.lenskart.com/media/desktop/img/Dec22/1-Dec/Homepage-Banner-web.gif"
       />
-       <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"As Seen On Karan Johar"} />
 
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <Image
         h="390px"
         src="https://static1.lenskart.com/media/desktop/img/Dec22/Web_banner.gif"
       />
-       <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"Trending Sunglasses"} />
 
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <Image
         h="390px"
         src="https://static1.lenskart.com/media/desktop/img/Jan23/sunglasses/Sun-Banner-web.gif"
       />
-       <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"Aquacolor - Glam Up With Color Lenses"} />
 
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <Image
         h="390px"
         src="https://static1.lenskart.com/media/desktop/img/Oct22/kiara/Refresh-Banner-Web.gif"
       />
-       <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <StripText text={"OUR BRANDS"} />
 
-      <Strip />
-      <Strip />
-      <Strip />
+      <Strip h={"60px"} />
+
       <Image
         h="250px"
         src="https://static1.lenskart.com/media/desktop/img/Aug21/Desktop/VC-Banner.jpg"
       />
-      <Strip />
-      <Footer/>
+      <Strip h={"20px"} />
+      <Footer />
+      {JSON.stringify(state.cart)}
     </Box>
   );
 }

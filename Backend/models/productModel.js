@@ -10,7 +10,7 @@ let productSchema = new mongoose.Schema({
     required: true,
   },
   prices: {
-    type: String,
+    type: Array,
     required: true,
   },
 });

@@ -26,7 +26,7 @@ export default function Navbar() {
     { to: "/buy1get1", name: "BUY 1 GET 1"},
   ]
   return (
-    <Box w={"100%"} h={"150px"} pl={10} pt={"3"} >
+    <Box w={"100%"} h={"160px"} pl={10} pt={"3"} position={"sticky"} top={0} zIndex={10} bg={"white"} >
         {/* Top Most Menu */}
       <HStack justifyContent="space-between" w={"100%"} pr={"20px"}
     //    bg={"green.100"}
@@ -49,7 +49,7 @@ export default function Navbar() {
         h={"60px"}
         mt={3}
         >
-            <Image src="https://static.lenskart.com/media/desktop/img/site-images/main_logo.svg" alt="logo" w={"160px"} />
+            <Image src="https://static.lenskart.com/media/desktop/img/site-images/main_logo.svg" alt="logo" w={"160px"} onClick={()=> location.href="/"} cursor={"pointer"} />
 
             <HStack>
                 <PhoneCall size={20}/>  
