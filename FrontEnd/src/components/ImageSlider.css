@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Prevent horizontal overflow */
+    /* overflow: hidden; Prevent horizontal overflow */
   }
   
   .slider-img {

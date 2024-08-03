@@ -12,7 +12,6 @@ import {
 } from '@chakra-ui/react'
 
 export default function Detais(props) {
-  console.log(props.size, "from detaiils")
   return (
     <Box w={"35%"} h={"100%"} p={"15px"}>
       <HStack justifyContent={"space-between"} mt={"20px"}>

@@ -14,11 +14,10 @@ export default function SinglePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   let url = import.meta.env.VITE_BASE_URL;
-console.log(data)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${url}/products/v2/${id}`);
+        const response = await axios.get(`${url}/products/v2/find/${id}`);
         setData(response.data);
         setLoading(false);
       } catch (error) {

@@ -1,30 +1,25 @@
-import { Box, Checkbox, Grid, HStack } from "@chakra-ui/react";
-import React from "react";
-import Navbar from "../components/Navbar";
-import Image from "../miscellaneous/Image";
-import HelpLine from "../miscellaneous/HelpLine";
-import SortingBar from "../components/SortingBar";
-import ItemBox from "../components/ItemBox";
-import Filter from "../components/Filter";
-import { useDispatch, useSelector } from "react-redux";
-import fetchData from "../CustomHookAndFunction/fetchData";
-import { GET_DATA } from "../redux/actionTypes";
-import "./css/MensPage.css";
-import Footer from "../components/Footer";
-export default function KidsGlassPage() {
-  const url = import.meta.env.VITE_BASE_URL;
-  const state = useSelector((state) => state.render);
-  const dispatch = useDispatch();
+import { Box, Grid, HStack } from '@chakra-ui/react'
+import React from 'react'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import HelpLine from '../miscellaneous/HelpLine'
+import Image from '../miscellaneous/Image'
+import Filter from '../components/Filter'
+import SortingBar from '../components/SortingBar'
+import ItemBox from '../components/ItemBox'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
-  console.log(state);
-
-  React.useEffect(() => {
-    fetchData(`${url}/products/v2/kidslense`, dispatch, GET_DATA);
-  }, []);
+export default function SearchBarResultPage() {
+    let {searchKey} = useParams();
+    const state = useSelector(state => state.data)
+    React.useEffect(() => {
+        console.log(state)
+    }, [state])
   return (
-    <Box> 
-      <Navbar />
-      <Box p={"30px"}>  
+    <Box>
+        <Navbar/>
+        <Box p={"30px"}>  
         <HelpLine />
         <Image
           h={"145px"}   
@@ -53,7 +48,7 @@ export default function KidsGlassPage() {
           </Box>
         </HStack>
       </Box>
-      <Footer/>
+        <Footer/>
     </Box>
   )
 }

@@ -12,6 +12,23 @@ const {
 const User = require("../models/userModel");
 const auth = require("../middleweres/auth");
 
+// Finding Search  Query
+
+operationRouter.get("/search/:key", async (req, res) => {
+  let { key } = req.params;
+  let data = await Product.find({
+    $or: [
+      { tags: { $regex: key, $options: "i" } },
+      {  searchProductName: { $regex: key, $options: "i" } },
+      { type: { $regex: key, $options: "i" } },
+
+    ],
+    
+  }).limit(10);
+  res.send(data);
+});
+
+
 operationRouter.post("/addtocart/:id", auth, async (req, res) => {
   let { email } = req.body;
   let id = req.params.id; // this is not a mongo id it is the id already given in object

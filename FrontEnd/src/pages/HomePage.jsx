@@ -83,6 +83,7 @@ export default function HomePage() {
         src="https://static1.lenskart.com/media/desktop/img/harmony/28-jun-24/Web%20Banner%201920x520.jpg"
       />
 </Box>
+      <Strip h={"40px"} />
       <ImageSlider data={imageLink} />
       <Strip h={"40px"} />
 

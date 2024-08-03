@@ -9,6 +9,11 @@ import KidslensePage from './pages/KidsLensPage'
 import KidssunglassPage from './pages/KidssunglassPage'
 import ScreenlensePage from './pages/ScreenLensPage'
 import SinglePage from './pages/SinglePage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import CartPage from './pages/CartPage'
+import { Heading } from '@chakra-ui/react'
+import SearchBarResultPage from './pages/SearchBarResultPage'
 
 
 
@@ -16,6 +21,12 @@ export default function AllRoute() {
   return (
    <Routes>
     <Route path='/' element={<HomePage/>}/>
+    <Route  path='/login' element={<LoginPage/>} />
+    <Route  path='/register' element={<RegisterPage/>} />
+    <Route  path={"/cart"} element={<CartPage/>} />
+    <Route  path='/wishlist' element={<Heading>WishList</Heading>} />
+    <Route  path='/search/:searchKey' element={<SearchBarResultPage/>}  />
+    {/* Static Pges */}
     <Route path='/mens' element={<MensPage/>}  /> 
     <Route  path='/womens' element={<WomensPage/>} />
     <Route  path='/bluelens' element={<BluelensPage/>} />
