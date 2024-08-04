@@ -29,7 +29,7 @@ export default function ItemBox(props) {
       </Text>
       <Text>Size: {props.size} [ {props.tags} ]</Text>
       <Text fontWeight={"bold"} mt={"20px"}>
-        ₹ {props.prices[0].price}
+        ₹ {props?.prices[0]?.price}
       </Text>
       
       <Box position={"absolute"} right={"20px"} top={"20px"} cursor={"pointer"}>

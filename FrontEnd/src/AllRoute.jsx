@@ -14,6 +14,7 @@ import RegisterPage from './pages/RegisterPage'
 import CartPage from './pages/CartPage'
 import { Heading } from '@chakra-ui/react'
 import SearchBarResultPage from './pages/SearchBarResultPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 
 
@@ -25,7 +26,7 @@ export default function AllRoute() {
     <Route  path='/register' element={<RegisterPage/>} />
     <Route  path={"/cart"} element={<CartPage/>} />
     <Route  path='/wishlist' element={<Heading>WishList</Heading>} />
-    <Route  path='/search/:searchKey' element={<SearchBarResultPage/>}  />
+    <Route  path='/api/search/:searchKey' element={<SearchBarResultPage/>} exact />
     {/* Static Pges */}
     <Route path='/mens' element={<MensPage/>}  /> 
     <Route  path='/womens' element={<WomensPage/>} />
@@ -35,6 +36,8 @@ export default function AllRoute() {
     <Route  path='/kidssunglass' element={<KidssunglassPage/>} />
     <Route  path='/screenlense' element={<ScreenlensePage/>} />
     <Route  path='/product/:id' element={<SinglePage/>} />
+    {/* Page not Founnd */}
+    <Route path='*' element={<NotFoundPage/>} />
     
    </Routes>
   )

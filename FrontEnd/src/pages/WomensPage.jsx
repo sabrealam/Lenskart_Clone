@@ -44,13 +44,13 @@ export default function WomensPage() {
               );
             })}
           </Grid>
-          <HStack w={"100%"} p={"30px"} flexWrap={"wrap"} gap={"10px"}>
+          {/* <HStack w={"100%"} p={"30px"} flexWrap={"wrap"} gap={"10px"}>
             {state && state.map((item) => {
               return (
                 <ItemBox key={item.id} {...item} />
               );
             })}
-          </HStack>
+          </HStack> */}
         </Box>
       </HStack>
     </Box>

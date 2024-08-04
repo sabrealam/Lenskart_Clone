@@ -12,8 +12,8 @@ export default function LoginPage() {
   let toast = useToast();
   let url = import.meta.env.VITE_BASE_URL;
   let [formData, setFormData] = React.useState({
-    email: "",
-    password: "",
+    email: "abc@gmail.com",
+    password: "abc",
   });
   let handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -23,29 +23,34 @@ export default function LoginPage() {
 
     try {
       let { data } = await axios.post(`${url}/user/login`, formData);
-      // console.log(data.user)
-      dispatch({ type: LOGIN , payload: data.user });
+      // console.log(data)
+      // dispatch({ type: LOGIN , payload: data });
       toast({
-        title: 'Login Successful.',
+        title: "Login Successful.",
         description: "Now you can start shopping.",
-        status: 'success',
+        status: "success",
         duration: 3000,
         isClosable: true,
-        position: 'top-right'
+        position: "top-right",
       });
+      localStorage.setItem("user", JSON.stringify(data));
+
+      let user = JSON.parse(localStorage.getItem("user"));
+      dispatch({ type: LOGIN, payload: user });
       navigate("/");
     } catch (error) {
       console.log(error);
       toast({
-        title: 'Login Failed.',
+        title: "Login Failed.",
         description: "Invalid credentials.",
-        status: 'error',
+        status: "error",
         duration: 3000,
         isClosable: true,
-        position: 'top-right'
+        position: "top-right",
       });
     }
   };
+
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -89,6 +94,7 @@ export default function LoginPage() {
                     placeholder="Email"
                     id="email"
                     onChange={handleChange}
+                    value={formData.email}
                   ></input>
                 </div>
               </div>
@@ -117,6 +123,7 @@ export default function LoginPage() {
                     placeholder="Password"
                     id="password"
                     onChange={handleChange}
+                    value={formData.password}
                   ></input>
                 </div>
               </div>

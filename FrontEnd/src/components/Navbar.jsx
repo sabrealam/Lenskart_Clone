@@ -1,40 +1,41 @@
-import React from "react";
-import { Box, HStack, Image, Input, Text, VStack } from "@chakra-ui/react";
+import React, { useRef } from "react";
+import { Box, HStack, Image, Input, Text, useDisclosure, VStack } from "@chakra-ui/react";
 import { Heart, PhoneCall, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CircleCheckBig } from "lucide-react";
 import axios from "axios";
 import SearchBarItem from "../miscellaneous/SearchBarItem";
-export default function Navbar() {
+import { useNavigate, Navigate } from "react-router-dom";
+import WishList from "../pages/WishList";
+export default function Navbar(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   let [query, setQuery] = React.useState("");
   let [showSearchTrending, setShowSearchTrending] = React.useState(false);
   let state = useSelector((state) => state.auth);
   let url = import.meta.env.VITE_BASE_URL;
+  const navigate = useNavigate();
+  let ref = document.getElementById("searchbar");
 
-  const handleKeyDown = async (event) => {
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      // Perform search action
-      try {
-        let { data } = await axios.get(
-          `http://localhost:5500/api/search/${query}`
-        );
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
+      setShowSearchTrending(false)
+      // make this serach bar  blur
+      ref.blur();
+      navigate(`/api/search/${query}`);
     }
   };
-
+React.useEffect(() => {
+  setShowSearchTrending(false)
+  }, [state]);
   React.useEffect(() => {
     // Add event listener for keydown
     window.addEventListener("keydown", handleKeyDown);
-
     // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [query]);
 
   let topData = [
     "Do More, Be More",
@@ -65,13 +66,14 @@ export default function Navbar() {
     "WOMENS GLASSES",
     "KIDS GLASSES",
     "BLUE LENSES",
-    "COMPUTES GLASS",
+    "COMPUTER GLASS",
     "AVIATOR",
-    "JHON JACOBS GLASS",
+    "JACOBS JHON GLASS",
     "VINCENT CHASE EYEGLASS",
   ];
   return (
     <Box
+    
       w={"100%"}
       h={"160px"}
       pl={10}
@@ -81,6 +83,8 @@ export default function Navbar() {
       zIndex={10}
       bg={"white"}
     >
+      {/* Wishlist component */}
+      <WishList onOpen={onOpen} isOpen={isOpen} onClose={onClose} />
       {/* Top Most Menu */}
       <HStack
         justifyContent="space-between"
@@ -128,6 +132,7 @@ export default function Navbar() {
             onFocus={() => setShowSearchTrending(true)}
             w={"550px"}
             h={"30px"}
+            id="searchbar"
             onChange={(e) => setQuery(e.target.value)}
           />
           <Box
@@ -164,14 +169,14 @@ export default function Navbar() {
               <Link to="/register">Register</Link>
             </Text>
           )}
-          <HStack cursor={"pointer"}>
-            <Heart size={17} />
-            <Link to="/wishlist">
+          <HStack cursor={"pointer"} onClick={onOpen}>
+            <Heart size={17}  />
+            <Text>
               <Text fontSize={"15"} cursor={"pointer"}>
                 {" "}
                 Wishlist{" "}
               </Text>
-            </Link>
+            </Text>
           </HStack>
           <HStack cursor={"pointer"}>
             <ShoppingBag size={17} />

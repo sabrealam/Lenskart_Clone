@@ -16,16 +16,23 @@ const auth = require("../middleweres/auth");
 
 operationRouter.get("/search/:key", async (req, res) => {
   let { key } = req.params;
-  let data = await Product.find({
-    $or: [
-      { tags: { $regex: key, $options: "i" } },
-      {  searchProductName: { $regex: key, $options: "i" } },
-      { type: { $regex: key, $options: "i" } },
-
-    ],
-    
-  }).limit(10);
-  res.send(data);
+  try {
+    let data = await Product.find({
+      $or: [
+        { tags: { $regex: key, $options: "i" } },
+        {  searchProductName: { $regex: key, $options: "i" } },
+        { type: { $regex: key, $options: "i" } },
+        {subCollection : { $regex: key, $options: "i" }},
+        {brand_name : { $regex: key, $options: "i" }},
+        {color : { $regex: key, $options: "i" }},
+  
+      ],
+      
+    }).limit(10);
+    res.send(data);
+  } catch (error) {
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 
@@ -52,7 +59,7 @@ operationRouter.post("/addtofavorite/:id", auth, async (req, res) => {
   res.send(user);
 });
 
-operationRouter.get("/viewcart", auth, async (req, res) => {
+operationRouter.post("/viewcart", auth, async (req, res) => {
   let { email } = req.body;
   let user = await User.findOne({ email });
   res.send(user.cart);

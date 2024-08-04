@@ -1,4 +1,4 @@
-import { Box, Grid, HStack } from '@chakra-ui/react'
+import { Box, Grid, Heading, HStack } from '@chakra-ui/react'
 import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -7,17 +7,26 @@ import Image from '../miscellaneous/Image'
 import Filter from '../components/Filter'
 import SortingBar from '../components/SortingBar'
 import ItemBox from '../components/ItemBox'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import fetchData from '../CustomHookAndFunction/fetchData'
+import { GET_DATA } from '../redux/actionTypes'
+import AllRoute from '../AllRoute'
 
 export default function SearchBarResultPage() {
     let {searchKey} = useParams();
-    const state = useSelector(state => state.data)
-    React.useEffect(() => {
-        console.log(state)
-    }, [state])
+    let key = searchKey.split(" ")[0]
+    let url = import.meta.env.VITE_BASE_URL;
+    const state = useSelector(state => state.render)
+    const dispatch = useDispatch();
+    console.log(key)
+  React.useEffect(() => {
+    fetchData(`${url}/search/${key}`, dispatch, GET_DATA);
+  }, [key]);
+//  console.log(state, "from search bar result page");
   return (
     <Box>
+        
         <Navbar/>
         <Box p={"30px"}>  
         <HelpLine />
@@ -31,20 +40,22 @@ export default function SearchBarResultPage() {
           </Box>
           <Box w={"80%"} h={"500px"} overflowX={"scroll"} className="scroll" >
             <SortingBar />
-            <Grid w={"100%"} p={"30px"} gridTemplateColumns={"repeat(3,1fr)"}   gap={"10px"}>
+            { state == undefined  ? <Heading>Data Not Found</Heading> : <Grid w={"100%"} p={"30px"} gridTemplateColumns={"repeat(3,1fr)"}   gap={"10px"}>
+              {state && state.map((item) => {
+                return (
+                  <ItemBox key={item.id} {...item} />
+                );
+              })
+              
+              }
+            </Grid>}
+            {/* <HStack w={"100%"} p={"30px"} flexWrap={"wrap"} gap={"10px"}>
               {state && state.map((item) => {
                 return (
                   <ItemBox key={item.id} {...item} />
                 );
               })}
-            </Grid>
-            <HStack w={"100%"} p={"30px"} flexWrap={"wrap"} gap={"10px"}>
-              {state && state.map((item) => {
-                return (
-                  <ItemBox key={item.id} {...item} />
-                );
-              })}
-            </HStack>
+            </HStack> */}
           </Box>
         </HStack>
       </Box>

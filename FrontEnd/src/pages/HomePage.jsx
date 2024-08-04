@@ -14,7 +14,7 @@ export default function HomePage() {
  
   // const state = useSelector((state) => state);
   // const dispatch = useDispatch();
-
+// console.log(props.showSearchTrending, "hampage")
 
   let catdata = [
     {
@@ -59,7 +59,7 @@ export default function HomePage() {
   ];
   return (
     <Box>
-      <Navbar />
+      <Navbar    />
       <HStack
         w={"100%"}
         h={"200px"}
