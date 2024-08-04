@@ -6,15 +6,17 @@ import "./css/MensPage.css";
 import ImageIn from "../miscellaneous/ImageIn";
 import CartItem from "../components/CartItem";
 import PriceBox from "../components/PriceBox";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { GET_DATA } from "../redux/actionTypes";
 export default function CartPage() {
   let state = useSelector((state) => state.auth);
+  let render = useSelector((state) => state.render);
   let navigate = useNavigate();
   let user = JSON.parse(localStorage.getItem("user"));
   let url = import.meta.env.VITE_BASE_URL;
-
-
+ 
+let dispatch = useDispatch()
 
   React.useEffect(() => {
     let viewCart = async () => {
@@ -29,7 +31,7 @@ export default function CartPage() {
             "Content-Type": "application/json",
           },
         });
-        console.log(data);
+        dispatch({ type: GET_DATA, payload: data.data });
       } catch (error) {
         console.log(error);
       }
@@ -107,12 +109,10 @@ export default function CartPage() {
               <Text mt={"10px"} fontSize={"30px"}>
                 CartItems [ ]
               </Text>
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
-              <CartItem />
+              {render.map((item) => {
+                return <CartItem key={item._id} {...item} />;
+              })}
+              
             </Box>
           </Box>
           <Box w={"30%"} h={"100%"} p={"20px"}>

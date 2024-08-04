@@ -59,6 +59,11 @@ operationRouter.post("/addtofavorite/:id", auth, async (req, res) => {
   res.send(user);
 });
 
+operationRouter.post("/viewfavorite", auth, async (req, res) => {
+  let { email } = req.body;
+  let user = await User.findOne({ email });
+  res.send(user.favorite);
+});
 operationRouter.post("/viewcart", auth, async (req, res) => {
   let { email } = req.body;
   let user = await User.findOne({ email });

@@ -1,9 +1,15 @@
 import React from 'react'
 import { Box, Button, Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerOverlay, Grid, Radio, RadioGroup, Stack, useDisclosure } from '@chakra-ui/react'
-import GridImage from '../components/GridImage';
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 export default function WishList( { isOpen, onOpen, onClose} ) {
     const [placement, setPlacement] = React.useState('left')
+    let state = useSelector(state => state.render)
     let [data, setData] = React.useState([1,2,3,4,5])
+
+    React.useEffect(()=>{
+        setData([1,2,3,4,5])
+    },[])
   return (
     <>
       <RadioGroup defaultValue={placement} onChange={setPlacement}>
