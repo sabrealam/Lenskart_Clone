@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default async function fetchData(url , dispatch, type) {
+    console.log(url)
     try {
         let {data} = await axios.get(url)
         console.log("data fetched successfully");

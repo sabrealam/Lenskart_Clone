@@ -16,7 +16,6 @@ export default function MensPage() {
   const state = useSelector((state) => state.render);
   const dispatch = useDispatch();
 
-  console.log(state);
 
   React.useEffect(() => {
     fetchData(`${url}/products/v2/mens`, dispatch, GET_DATA);
