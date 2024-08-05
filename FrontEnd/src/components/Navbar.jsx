@@ -1,32 +1,41 @@
 import React, { useRef } from "react";
-import { Box, HStack, Image, Input, Text, useDisclosure, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Image,
+  Input,
+  Text,
+  useDisclosure,
+  VStack,
+} from "@chakra-ui/react";
 import { Heart, PhoneCall, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CircleCheckBig } from "lucide-react";
 import axios from "axios";
 import SearchBarItem from "../miscellaneous/SearchBarItem";
 import { useNavigate, Navigate } from "react-router-dom";
 import WishList from "../pages/WishList";
+import { LOGOUT } from "../redux/actionTypes";
 export default function Navbar(props) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
   let [query, setQuery] = React.useState("");
   let [showSearchTrending, setShowSearchTrending] = React.useState(false);
   let state = useSelector((state) => state.auth);
   let url = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   let ref = document.getElementById("searchbar");
-
+  let dispatch = useDispatch();
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      setShowSearchTrending(false)
+      setShowSearchTrending(false);
       // make this serach bar  blur
       ref.blur();
       navigate(`/api/search/${query}`);
     }
   };
-React.useEffect(() => {
-  setShowSearchTrending(false)
+  React.useEffect(() => {
+    setShowSearchTrending(false);
   }, [state]);
   React.useEffect(() => {
     // Add event listener for keydown
@@ -71,9 +80,14 @@ React.useEffect(() => {
     "JACOBS JHON GLASS",
     "VINCENT CHASE EYEGLASS",
   ];
+
+  let logOut = ()=> {
+    dispatch({type : LOGOUT})
+    localStorage.removeItem("user")
+    navigate("/")
+  }
   return (
     <Box
-    
       w={"100%"}
       h={"160px"}
       pl={10}
@@ -84,7 +98,7 @@ React.useEffect(() => {
       bg={"white"}
     >
       {/* Wishlist component */}
-      <WishList onOpen={onOpen} isOpen={isOpen} onClose={onClose} />
+      {/* <WishList onOpen={onOpen} isOpen={isOpen} onClose={onClose} /> */}
       {/* Top Most Menu */}
       <HStack
         justifyContent="space-between"
@@ -162,15 +176,15 @@ React.useEffect(() => {
             Track Order{" "}
           </Text>
           {state.isAuth ? (
-            <CircleCheckBig size={25} color="green" cursor={"pointer"} />
+            <CircleCheckBig size={25} color="green" cursor={"pointer"} onClick={logOut} />
           ) : (
             <Text fontSize={"15"} cursor={"pointer"}>
               <Link to="/login">Login</Link> /
               <Link to="/register">Register</Link>
             </Text>
           )}
-          <HStack cursor={"pointer"} onClick={onOpen}>
-            <Heart size={17}  />
+          <HStack cursor={"pointer"} onClick={ ()=> onOpen}>
+            <Heart size={17} />
             <Text>
               <Text fontSize={"15"} cursor={"pointer"}>
                 {" "}

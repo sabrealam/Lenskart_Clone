@@ -11,15 +11,24 @@ import fetchData from "../CustomHookAndFunction/fetchData";
 import { GET_DATA } from "../redux/actionTypes";
 import "./css/MensPage.css";
 import Footer from "../components/Footer";
+import { filterBrand, filterColor, filterWidth, handleFilter } from "../CustomHookAndFunction/filterLogic";
 export default function MensPage() {
   const url = import.meta.env.VITE_BASE_URL;
   const state = useSelector((state) => state.render);
   const dispatch = useDispatch();
 
-  // console.log(state);
+  console.log(state.length);
 
+  
   React.useEffect(() => {
-    fetchData(`${url}/products/v2/mens`, dispatch, GET_DATA);
+   let res =  fetchData(`${url}/products/v2/mens`, dispatch, GET_DATA);
+  res.then((res) => {
+    // let r = filterBrand(res, ["Lenskart Hustlr Screen Glasses", "John Jacobs Online", "Lenskart Hustlr"]);
+    // let r = filterColor(res, ["Blue", "Black", "Red"]);
+    // let r = filterWidth(res, ["139 mm", "119 mm"])
+    // console.log(r, "filterBrand");
+  }); 
+  // handleFilter(state, dispatch);
   }, []);
 
   return (
@@ -32,11 +41,11 @@ export default function MensPage() {
           src="https://static5.lenskart.com/media/uploads/plp-free-lenses-desk.png"
         />
         <HStack w={"100%"} h={"600px"} >
-          <Box w={"15%"} h={"500px"} >
+          <Box w={"20%"} h={"500px"} overflowY={"scroll"} className="scroll" >
             <Filter />
           </Box>
           <Box w={"80%"} h={"500px"} overflowX={"scroll"} className="scroll" >
-            <SortingBar />
+            <SortingBar data={state}/>
             <Grid w={"100%"} p={"30px"} gridTemplateColumns={"repeat(3,1fr)"}   gap={"10px"}>
               {state && state.map((item) => {
                 return (

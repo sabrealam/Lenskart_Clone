@@ -37,14 +37,14 @@ export default function WishList({ isOpen, onOpen, onClose }) {
             "Content-Type": "application/json",
           },
         });
-        console.log(data);
+        console.log("from wishlist", data);
         dispatch({ type: GET_DATA, payload: data });
       } catch (error) {
         console.log(error);
       }
     };
     viewFav();
-  }, []);
+  }, [render]);
   return (
     <>
       <RadioGroup defaultValue={placement} onChange={setPlacement}></RadioGroup>
@@ -62,7 +62,7 @@ export default function WishList({ isOpen, onOpen, onClose }) {
             <Grid templateColumns={"repeat(3,1fr)"} gap={"5px"}>
               {render.map((data, item) => {
                 return (
-                  <ItemBox key={item.id} {...data} />
+                  <ItemBox key={item} {...data} />
                 );
               })}
             </Grid>

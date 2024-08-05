@@ -19,6 +19,7 @@ import {
 import axiox from "axios";
 import {useToast} from "@chakra-ui/react"
 import { useSelector } from "react-redux";
+import { addToFav } from "../CustomHookAndFunction/fetchData";
 export default function Detais(props) {
   let url = import.meta.env.VITE_BASE_URL;
   const toast = useToast()
@@ -59,11 +60,34 @@ export default function Detais(props) {
     }
   };
   // console.log(props.id);
+  let addtf = (id)=> {
+      let res = addToFav(id)
+      if(res){
+        toast({
+          title: 'Item Added to Favorite',
+          description: "Item added to favorite",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right'
+        })
+      }
+      else{
+        toast({
+          title: 'Item Not Added to Favorite',
+          description: "Item not added to favorite",
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-right'
+        })
+      }
+  }
   return (
     <Box w={"35%"} h={"100%"} p={"15px"}>
-      <HStack justifyContent={"space-between"} mt={"20px"}>
-        <Text color={"gray.500"}>Lenskart Air</Text>
-        <HeartIcon size={30} cursor={"pointer"} />
+      <HStack justifyContent={"space-between"} mt={"20px"} >
+        <Text color={"gray.500"} >Lenskart Air</Text>
+        <HeartIcon size={30} cursor={"pointer"} onClick={()=> addtf(props.id)} />
       </HStack>
       <Text fontWeight={"bold"} fontSize={"22px"} mt={"10px"}>
         {props.searchProductName}

@@ -35,7 +35,7 @@ export default function KidssunglassPage() {
           <Filter />
         </Box>
         <Box w={"80%"} h={"500px"} overflowX={"scroll"} className="scroll" >
-          <SortingBar />
+          <SortingBar data={state} />
           <Grid w={"100%"} p={"30px"} gridTemplateColumns={"repeat(3,1fr)"}   gap={"10px"}>
             {state && state.map((item) => {
               return (
