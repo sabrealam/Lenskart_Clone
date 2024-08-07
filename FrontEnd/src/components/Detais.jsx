@@ -5,6 +5,7 @@ import {
   Image,
   TagRightIcon,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { CircleAlert, HeartIcon } from "lucide-react";
 import React from "react";
@@ -20,7 +21,9 @@ import axiox from "axios";
 import {useToast} from "@chakra-ui/react"
 import { useSelector } from "react-redux";
 import { addToFav } from "../CustomHookAndFunction/fetchData";
+import TestLens from "./TestLens";
 export default function Detais(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   let url = import.meta.env.VITE_BASE_URL;
   const toast = useToast()
   let state = useSelector((state) => state.auth);
@@ -147,8 +150,11 @@ export default function Detais(props) {
         textAlign={"center"}
         borderRadius={"5px"}
         justifyContent={"space-evenly"}
+        onClick={onOpen}
+        cursor={"pointer"}
       >
         <Text fontSize={"17px"}>Try On</Text>
+        <TestLens isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
         <Image src="https://static.lenskart.com/media/desktop/img/pdp/try_on_model.png" />
       </HStack>
 

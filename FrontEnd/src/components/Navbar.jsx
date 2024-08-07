@@ -98,7 +98,7 @@ export default function Navbar(props) {
       bg={"white"}
     >
       {/* Wishlist component */}
-      {/* <WishList onOpen={onOpen} isOpen={isOpen} onClose={onClose} /> */}
+      { isOpen && <WishList onOpen={onOpen} isOpen={isOpen} onClose={onClose} />}
       {/* Top Most Menu */}
       <HStack
         justifyContent="space-between"
@@ -183,7 +183,7 @@ export default function Navbar(props) {
               <Link to="/register">Register</Link>
             </Text>
           )}
-          <HStack cursor={"pointer"} onClick={ ()=> onOpen}>
+          <HStack cursor={"pointer"} onClick={onOpen}>
             <Heart size={17} />
             <Text>
               <Text fontSize={"15"} cursor={"pointer"}>

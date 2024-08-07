@@ -12,8 +12,8 @@ export default function LoginPage() {
   let toast = useToast();
   let url = import.meta.env.VITE_BASE_URL;
   let [formData, setFormData] = React.useState({
-    email: "abc@gmail.com",
-    password: "abc",
+    email: "",
+    password: "",
   });
   let handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });

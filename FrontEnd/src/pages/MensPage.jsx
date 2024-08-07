@@ -17,7 +17,7 @@ export default function MensPage() {
   const state = useSelector((state) => state.render);
   const dispatch = useDispatch();
 
-  console.log(state.length);
+  console.log(state);
 
   
   React.useEffect(() => {
