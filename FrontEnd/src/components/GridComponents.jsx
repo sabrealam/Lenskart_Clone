@@ -3,7 +3,6 @@ import { Grid } from "@chakra-ui/react";
 import ItemBox from "./ItemBox";
 import CardSkeleton from "../miscellaneous/CardSkeleton";
 import { useSelector } from "react-redux";
-import { trusted } from "mongoose";
 export default function GridComponents() {
     const state = useSelector((state) => state.render);
     const [skeleton, setSkeleton] = React.useState(100);
