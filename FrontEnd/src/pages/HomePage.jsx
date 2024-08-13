@@ -11,10 +11,9 @@ import SubFooter from "../components/SubFooter";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 export default function HomePage() {
- 
   // const state = useSelector((state) => state);
   // const dispatch = useDispatch();
-// console.log(props.showSearchTrending, "hampage")
+  // console.log(props.showSearchTrending, "hampage")
 
   let catdata = [
     {
@@ -58,36 +57,40 @@ export default function HomePage() {
     "https://static5.lenskart.com/media/uploads/Coastline.gif",
   ];
   return (
-    <Box>
-      <Navbar    />
+    <Box w={"100%"}>
+      {/* <Box w={"100%"} bg={"black"}> */}
+        <Navbar />
+      {/* </Box> */}
       <HStack
         w={"100%"}
-        h={"200px"}
+        minH={{base: "250px"}} 
+        h={"auto"}
         justifyContent="space-evenly"
-        mt={"30px"}
+        mt={"80px"}
         bg={"gray.100"}
+        flexWrap={"wrap"}
+        p={"5px"}
       >
         {catdata.map((e, i) => (
+          
           <CategoryCard to={e.to} key={i} name={e.name} src={e.src} />
         ))}
       </HStack>
-        <Box w="100%"
-        h="360px"
-        bg={"cyan.400"}
-        >
+      <Box w="100%" h="360px" bg={"cyan.400"}>
+        <Image
+          w="100%"
+          h="100%"
+          src="https://static1.lenskart.com/media/desktop/img/harmony/28-jun-24/Web%20Banner%201920x520.jpg"
+          alt="banner"
+          
+        />
+      </Box>
+      <Strip h={"40px"} />
+      {/* <ImageSlider data={imageLink} /> */}
+      <Strip h={"40px"} />
 
-        
       <Image
         w="100%"
-        h="100%"
-        src="https://static1.lenskart.com/media/desktop/img/harmony/28-jun-24/Web%20Banner%201920x520.jpg"
-      />
-</Box>
-      <Strip h={"40px"} />
-      <ImageSlider data={imageLink} />
-      <Strip h={"40px"} />
-
-      <Image
         h="250px"
         src="https://static1.lenskart.com/media/desktop/img/Apr22/Bannerforexport.jpg"
       />

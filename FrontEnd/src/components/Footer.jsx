@@ -35,7 +35,7 @@ export default function Footer() {
   return (
     <Box
       w={"100%"}
-      h={"80vh"}
+      h={"auto"}
       p={"50px"}
        bg={"#000042"}
        color={"white"}
@@ -59,16 +59,18 @@ export default function Footer() {
         Variety Of Coloured Contact Lenses From Our Online Store.
       </Text>
       <HStack w={"100%"} justifyContent={"space-between"} mt={"70px"}>
-        <HStack w={"40%"} justifyContent={"space-around"} >
+        <HStack w={["85%", "85%", "60%","40%"]} justifyContent={"space-around"}
+        
+        >
           {" "}
          <FooterMenu name={services.name} links={services.links} />
           <FooterMenu name={aboutUs.name} links={aboutUs.links} />
           <FooterMenu name={help.name} links={help.links} />
 
         </HStack>
-        <Box w={"20%"}  >
+        <Box w={"20%"} fontSize={["10px", "15px"]}  >
           {" "}
-          <HStack w={"100%"} justifyContent={"space-around"} >
+          <HStack w={"100%"} flexDirection={["column", "column",   "row"]} justifyContent={"space-around"} >
             <Image   src="https://static.lenskart.com/media/desktop/img/play-store.svg" />
             <Image   src="https://static.lenskart.com/media/desktop/img/app-store.svg" />
           </HStack>

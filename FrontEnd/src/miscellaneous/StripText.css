@@ -11,15 +11,25 @@
   }
   
   .left-line {
-    margin-left: 100px; /* Adjust the left margin */
+    /* margin-left: 100px; */
+     /* Adjust the left margin */
   }
   
   .right-line {
-    margin-right: 100px; /* Adjust the right margin */
+    /* margin-right: 100px; */
+     /* Adjust the right margin */
   }
   
   .centered-text {
     font-weight: bold;
+    /* font-size: 30px; */
     margin: 0 10px; /* Adjust the spacing between text and lines */
   }
+
+/* write a css breakpoint for mobile */
+@media all and   (min-width: 250px) and (max-width: 400px) {
+  .centered-text {
+    font-size: 14px;
+  }
+}
   

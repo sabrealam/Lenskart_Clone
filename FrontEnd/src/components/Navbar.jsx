@@ -81,16 +81,16 @@ export default function Navbar(props) {
     "VINCENT CHASE EYEGLASS",
   ];
 
-  let logOut = ()=> {
-    dispatch({type : LOGOUT})
-    localStorage.removeItem("user")
-    navigate("/")
-  }
+  let logOut = () => {
+    dispatch({ type: LOGOUT });
+    localStorage.removeItem("user");
+    navigate("/");
+  };
   return (
     <Box
       w={"100%"}
       h={"160px"}
-      pl={10}
+      pl={["0px", "0px", "0px", 10]}
       pt={"3"}
       position={"sticky"}
       top={0}
@@ -98,7 +98,7 @@ export default function Navbar(props) {
       bg={"white"}
     >
       {/* Wishlist component */}
-      { isOpen && <WishList onOpen={onOpen} isOpen={isOpen} onClose={onClose} />}
+      {isOpen && <WishList onOpen={onOpen} isOpen={isOpen} onClose={onClose} />}
       {/* Top Most Menu */}
       <HStack
         justifyContent="space-between"
@@ -106,14 +106,16 @@ export default function Navbar(props) {
         pr={"20px"}
         //    bg={"green.100"}
       >
-        <HStack flexWrap={"wrap"}>
+        <HStack flexWrap={"wrap"} display={{ base: "none", md: "flex" }}>
           {topData.map((data, i) => (
             <Text key={i} fontSize={"10"} cursor={"pointer"}>
               {data}&emsp; |{" "}
             </Text>
           ))}
         </HStack>
-        <Text fontSize={"13"}>Contact Us</Text>
+        <Text fontSize={"13"} display={{ base: "none", md: "flex" }}>
+          Contact Us
+        </Text>
       </HStack>
 
       {/* Logo Meny Search Bar, Cart */}
@@ -128,23 +130,29 @@ export default function Navbar(props) {
         <Image
           src="https://static.lenskart.com/media/desktop/img/site-images/main_logo.svg"
           alt="logo"
-          w={"160px"}
+          w={{ base: "100px", md: "150px", lg: "160px" }}
           onClick={() => (location.href = "/")}
           cursor={"pointer"}
         />
 
         <HStack>
           <PhoneCall size={20} />
-          <Text fontWeight={"bold"} fontSize={"15"}>
+          <Text
+            fontWeight={"bold"}
+            fontSize={{ base: "10px", md: "15px" }}
+            display={{ base: "none", lg: "block" }}
+          >
             1800-202-4444
           </Text>
         </HStack>
-        <Box position={"relative"}>
+        <Box position={{ lg: "relative" }}>
           <Input
             placeholder="What are You Looking for"
-            // onBlur={() => setShowSearchTrending(false)}
+            display={["none", "block", "block"]}
             onFocus={() => setShowSearchTrending(true)}
-            w={"550px"}
+            // w={"550px"}
+            w={"100%"}
+            flexGrow={"550px"}
             h={"30px"}
             id="searchbar"
             onChange={(e) => setQuery(e.target.value)}
@@ -154,7 +162,7 @@ export default function Navbar(props) {
             display={showSearchTrending ? "block" : "none"}
             top={"30px"}
             right={"0px"}
-            w={"100%"}
+            w={["100%", "100%"]}
             h={"600px"}
             border={"1px solid gray"}
             borderTop={"none"}
@@ -171,17 +179,35 @@ export default function Navbar(props) {
             </VStack>
           </Box>
         </Box>
+
         <HStack w={"400px"} justify={"space-evenly"}>
-          <Text fontSize={"15"} cursor={"pointer"}>
+          <Text
+            fontSize={"15"}
+            cursor={"pointer"}
+            display={{ base: "none", md: "none", lg: "block" }}
+          >
             Track Order{" "}
           </Text>
           {state.isAuth ? (
-            <CircleCheckBig size={25} color="green" cursor={"pointer"} onClick={logOut} />
+            <CircleCheckBig
+              size={25}
+              color="green"
+              cursor={"pointer"}
+              onClick={logOut}
+            />
           ) : (
-            <Text fontSize={"15"} cursor={"pointer"}>
-              <Link to="/login">Login</Link> /
-              <Link to="/register">Register</Link>
-            </Text>
+            <>
+              <Text fontSize={"15"} cursor={"pointer"}>
+                <Link to="/login">Login</Link>
+              </Text>
+              <Text
+                fontSize={"15"}
+                display={{ base: "none" }}
+                cursor={"pointer"}
+              >
+                <Link to="/register">Register</Link>
+              </Text>
+            </>
           )}
           <HStack cursor={"pointer"} onClick={onOpen}>
             <Heart size={17} />
@@ -202,31 +228,54 @@ export default function Navbar(props) {
           </HStack>
         </HStack>
       </HStack>
+      {/* Input Second */}
+      <Box mt={"20px"}>
+        <Input
+          placeholder="What are You Looking for"
+          display={["block", "none"]}
+          onFocus={() => setShowSearchTrending(true)}
+          // w={"550px"}
+          w={"100%"}
+          flexGrow={"550px"}
+          h={"30px"}
+          id="searchbar"
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </Box>
       {/* Category Menu */}
 
       <HStack
         w={"100%"}
-        h={"50px"}
+        h={"auto"}
         //  bg={"red.100"}
         justifyContent={"space-around"}
-        mt={3}
+        mt={5}
       >
-        <HStack w={"60%"} justify={"space-evenly"} flexShrink={0}>
+        <HStack
+          w={{ base: "100%", md: "100%", lg: "60%" }}
+          justify={"space-evenly"}
+          flexWrap={"wrap"}
+          fontSize={{ base: "13px", md: "15px", lg: "16px" }}
+          h={"75px"}
+         
+        >
           {catdata.map((data, i) => (
             <Link
               to={data.to}
               key={i}
               fontWeight={"bold"}
               _hover={{ textDecoration: "underline", color: "red.300" }}
-              fontSize={"14"}
+              // fontSize={"14px"}
               cursor={"pointer"}
               color={"gray.550"}
             >
-              {data.name}
+              <Text _hover={{ textDecoration: "underline", color: "red.300" }}>
+                {data.name}
+              </Text>
             </Link>
           ))}
         </HStack>
-        <HStack>
+        <HStack display={{ base: "none", md: "none", lg: "flex" }}>
           <Image
             w={"20"}
             src="https://static1.lenskart.com/media/desktop/img/May22/3dtryon1.png"

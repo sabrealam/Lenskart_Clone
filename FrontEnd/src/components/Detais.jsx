@@ -135,7 +135,7 @@ export default function Detais(props) {
         onClick={() => addToCart(props, state.user)}
       >
         <Text color={"white"} fontSize={"17px"}>
-          Select Lenses
+          Add To Cart
         </Text>
         <Text color={"white"} fontSize={"14px"}>
           ( with 1 Year Warranty & 14 Day Return )

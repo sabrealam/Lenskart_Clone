@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 export default function FooterMenu(props) {
   return (
     <Box>
-      <Text fontSize={"25px"}>{props.name}</Text>
+      <Text fontSize={[ "18px", "25px"]}>{props.name}</Text>
       {props.links.map((item, index) => (
-        <Text key={index} fontSize={"15px"} mt={"10px"}>
+        <Text key={index} fontSize={["10px", "15px"]} mt={"10px"}>
           <Link to={item.to} >
             {item.name}
           </Link>
