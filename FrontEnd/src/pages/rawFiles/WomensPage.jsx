@@ -10,6 +10,7 @@ import Image from '../miscellaneous/Image';
 import Filter from '../components/Filter';
 import SortingBar from '../components/SortingBar';
 import Footer from '../components/Footer';
+import GridComponents from '../components/GridComponents';
 
 export default function WomensPage() {
   const url = import.meta.env.VITE_BASE_URL
@@ -37,7 +38,8 @@ export default function WomensPage() {
         </Box>
         <Box w={"80%"} h={"500px"} overflowX={"scroll"} className="scroll" >
           <SortingBar data = {state} />
-          <Grid w={"100%"} p={"30px"} gridTemplateColumns={"repeat(3,1fr)"}   gap={"10px"}>
+          <GridComponents/>
+          <Grid w={"100%"} p={"30px"}  display={"none"} gridTemplateColumns={"repeat(3,1fr)"}   gap={"10px"}>
             {state && state.map((item) => {
               return (
                 <ItemBox key={item.id} {...item} />

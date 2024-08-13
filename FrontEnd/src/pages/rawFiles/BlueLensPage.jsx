@@ -11,6 +11,7 @@ import fetchData from "../CustomHookAndFunction/fetchData";
 import { GET_DATA } from "../redux/actionTypes";
 import "./css/MensPage.css";
 import Footer from "../components/Footer";
+import GridComponents from "../components/GridComponents";
 export default function BlueLensePage() {
   const url = import.meta.env.VITE_BASE_URL;
   const state = useSelector((state) => state.render);
@@ -36,7 +37,8 @@ export default function BlueLensePage() {
         </Box>
         <Box w={"80%"} h={"500px"} overflowX={"scroll"} className="scroll" >
           <SortingBar  data={state}/>
-          <Grid w={"100%"} p={"30px"} gridTemplateColumns={"repeat(3,1fr)"}   gap={"10px"}>
+          <GridComponents/>
+          <Grid w={"100%"}  display={"none"} p={"30px"} gridTemplateColumns={"repeat(3,1fr)"}   gap={"10px"}>
             {state && state.map((item) => {
               return (
                 <ItemBox key={item.id} {...item} />

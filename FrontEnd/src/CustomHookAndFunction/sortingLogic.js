@@ -1,4 +1,4 @@
-import { GET_DATA } from "../redux/actionTypes";
+import { FETCH_SUCCESS, GET_DATA } from "../redux/actionTypes";
 
  
 
@@ -23,17 +23,17 @@ export let handleSort = (val, props, dispatch) => {
     // console.log(val)
     if (val === "High TO Low") {
       let res = highToLow(props);
-      dispatch({type: GET_DATA, payload: res});
+      dispatch({type: FETCH_SUCCESS, payload: res});
     }
     else if (val === "Low TO High") {
       let res = lowToHigh(props);
-      dispatch({type: GET_DATA, payload: res});
+      dispatch({type: FETCH_SUCCESS, payload: res});
     }else if(val === "Most Viewed"){
       let res = purchaseCount(props);
-      dispatch({type: GET_DATA, payload: res});
+      dispatch({type: FETCH_SUCCESS, payload: res});
     }
     else if(val === "New"){
       let res = newlyAdded(props);
-      dispatch({type: GET_DATA, payload: res});
+      dispatch({type: FETCH_SUCCESS, payload: res});
     }
 }

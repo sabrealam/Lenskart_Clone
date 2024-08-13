@@ -36,7 +36,7 @@ export default function SinglePage() {
 
         <HelpLine />
         <HStack w={"100%"} h={"100%"} justifyContent={"space-between"} alignItems={"flex-start"}  >
-        <GridImage/>
+        <GridImage {...data} />
         <Detais {...data}/>
         </HStack>
       </Box>

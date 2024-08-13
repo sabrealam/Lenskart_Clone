@@ -8,7 +8,8 @@ import CartItem from "../components/CartItem";
 import PriceBox from "../components/PriceBox";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { GET_DATA } from "../redux/actionTypes";
+import { FETCH_SUCCESS, GET_DATA } from "../redux/actionTypes";
+import CardSkeleton from "../miscellaneous/CardSkeleton";
 export default function CartPage() {
   let state = useSelector((state) => state.auth);
   let render = useSelector((state) => state.render);
@@ -31,7 +32,7 @@ let dispatch = useDispatch()
             "Content-Type": "application/json",
           },
         });
-        dispatch({ type: GET_DATA, payload: data.data });
+        dispatch({ type: FETCH_SUCCESS, payload: data.data });
       } catch (error) {
         console.log(error);
       }
@@ -109,9 +110,15 @@ let dispatch = useDispatch()
               <Text mt={"10px"} fontSize={"30px"}>
                 CartItems [ ]
               </Text>
-              {render.map((item) => {
-                return <CartItem key={item._id} {...item} />;
-              })}
+              {
+                 
+              render.loading ? <Text>loading</Text> :  render.data.map((item) => {
+                return <CartItem key={item._id} {...item} />
+              })
+
+
+
+              }
               
             </Box>
           </Box>

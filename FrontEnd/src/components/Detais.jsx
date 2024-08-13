@@ -133,6 +133,7 @@ export default function Detais(props) {
         textAlign={"center"}
         borderRadius={"5px"}
         onClick={() => addToCart(props, state.user)}
+        cursor={"pointer"}
       >
         <Text color={"white"} fontSize={"17px"}>
           Add To Cart

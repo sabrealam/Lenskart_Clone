@@ -13,7 +13,7 @@ import { handleFilter } from "../CustomHookAndFunction/filterLogic";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Filter() {
-  let data = useSelector((state) => state.render);
+  let {data} = useSelector((state) => state.render);
   let dispatch = useDispatch();
   let [filteredData, setFilteredData] = React.useState([]);
   let [filter, setFilter] = React.useState({
@@ -96,18 +96,7 @@ export default function Filter() {
     "Transparent",
     "Brown",
     "Gunmetal",
-    "Pink",
-    "Tortoise",
-    "Green",
-    "Purple",
-    "Maroon",
-    "Copper",
-    "Rose Gold",
-    "Red",
-    "White",
-    "Orange",
-    "Yellow",
-    "Violet",
+    "Pink", 
   ];
   const brands = [
     "Lenskart Hustlr",
@@ -138,32 +127,42 @@ export default function Filter() {
     "126 mm",
     "127 mm",
     "128 mm",
-    "129 mm",
-    "130 mm",
-    "131 mm",
-    "132 mm",
-    "133 mm",
-    "134 mm",
-    "135 mm",
-    "136 mm",
-    "137 mm",
-    "138 mm",
-    "139 mm",
-    "140 mm",
-    "141 mm",
-    "142 mm",
-    "143 mm",
-    "144 mm",
-    "145 mm",
-    "146 mm",
-    "147 mm",
-    "148 mm",
-    "149 mm",
-    "150 mm",
+    "129 mm", 
   ];
-
+let frameData = [
+  "FULL RIM",
+  "RIM LESS",
+  "HALF RIM"
+]
   return (
-    <Accordion defaultIndex={[0]}>
+    <Accordion defaultIndex={[0]} h={"auto"}>
+      <AccordionItem>
+        <h2>
+          <AccordionButton>
+            <Box as="span" flex="1" textAlign="left">
+              FRAME TYPR
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+        </h2>
+        <AccordionPanel pb={4}>
+          {/* color  */}
+          {frameData.map((frame, index) => {
+            return (
+              <Box key={index}>
+                <Checkbox
+                  size={"md"}
+                  value={frame}
+                  onChange={(e) => handleFilterColor(e)}
+                  key={index}
+                >
+                  {frame}
+                </Checkbox>
+              </Box>
+            );
+          })}
+        </AccordionPanel>
+      </AccordionItem>
       <AccordionItem>
         <h2>
           <AccordionButton>

@@ -83,7 +83,7 @@ export default function ItemBox(props) {
               Size: {props.size} [ {props.tags} ]
             </Text>
             <Text fontWeight={"bold"} mt={"20px"}>
-              ₹ {props?.prices[0]?.price}
+              ₹ {props?.prices[0]?.price || props?.purchaseCount * 10}
             </Text>
           </Link>
 

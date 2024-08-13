@@ -3,6 +3,12 @@ export let ADD_TO_CART="ADD_TO_CART"
 export let REMOVE_FROM_CART="REMOVE_FROM_CART"
 export let GET_DATA = "GET_DATA"
 
+// Handlling
+export let FETCH_REQUEST = "FETCH_REQUEST"
+export let FETCH_SUCCESS = "FETCH_SUCCESS"
+export let FETCH_FAILURE = "FETCH_FAILURE"
+
+
 // Auth
 export let LOGIN = "LOGIN"
 export let LOGOUT = "LOGOUT"

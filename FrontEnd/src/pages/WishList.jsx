@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_DATA } from "../redux/actionTypes";
+import { FETCH_SUCCESS, GET_DATA } from "../redux/actionTypes";
 import ItemBox from "../components/ItemBox";
 export default function WishList({ isOpen, onOpen, onClose }) {
   const [placement, setPlacement] = React.useState("left");
@@ -35,7 +35,7 @@ export default function WishList({ isOpen, onOpen, onClose }) {
             },
         })
         console.log(data)
-        dispatch({ type: GET_DATA, payload: data });
+        dispatch({ type: FETCH_SUCCESS, payload: data });
     } catch (error) {
       console.log(error);
     }
@@ -61,7 +61,7 @@ export default function WishList({ isOpen, onOpen, onClose }) {
           <DrawerHeader borderBottomWidth="1px">Wishlist</DrawerHeader>
           <DrawerBody>
             <Grid templateColumns={"repeat(3,1fr)"} gap={"5px"}>
-              {render.map((data, item) => {
+              {render.data.map((data, item) => {
                 return <ItemBox key={item} {...data} />;
               })}
             </Grid>

@@ -22,16 +22,18 @@ export default function Navbar(props) {
   let [query, setQuery] = React.useState("");
   let [showSearchTrending, setShowSearchTrending] = React.useState(false);
   let state = useSelector((state) => state.auth);
+  let render = useSelector((state) => state.render);
   let url = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   let ref = document.getElementById("searchbar");
   let dispatch = useDispatch();
+  console.log(showSearchTrending)
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       setShowSearchTrending(false);
       // make this serach bar  blur
       ref.blur();
-      navigate(`/api/search/${query}`);
+      navigate(`/search/${query}`);
     }
   };
   React.useEffect(() => {
@@ -151,15 +153,17 @@ export default function Navbar(props) {
             display={["none", "block", "block"]}
             onFocus={() => setShowSearchTrending(true)}
             // w={"550px"}
+            onBlur={()=>console.log("blur")}
             w={"100%"}
             flexGrow={"550px"}
             h={"30px"}
             id="searchbar"
             onChange={(e) => setQuery(e.target.value)}
+             
           />
           <Box
             position={"absolute"}
-            display={showSearchTrending ? "block" : "none"}
+            display={showSearchTrending == true ? "block" : "none"}
             top={"30px"}
             right={"0px"}
             w={["100%", "100%"]}
